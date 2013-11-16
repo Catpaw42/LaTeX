@@ -1,0 +1,50 @@
+%%This is a very basic article template.
+%%There is just one section and two subsections.
+\documentclass[11pt,a4paper]{report}  	%% hvad for en type dokument er det?
+
+%%preamble
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[titletoc]{appendix}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\bibliographystyle{plain}	%%style på refferencer
+\renewcommand{\chaptername}{}
+\renewcommand{\thechapter}{}
+\setcounter{tocdepth}{1}
+
+%%end preamble
+%%--------------------------------------------------------------------------------
+\begin{document}			%%begynd dokumentet
+%%--------------------------------------------------------------------------------
+\nocite{*}					%%erstatter citeringer i texten med reference tal	
+
+\input{text_documents/frontPage}
+
+\tableofcontents
+
+\chapter{Inledning}
+\input{text_documents/inledning}
+
+\chapter{Analyse}
+\input{text_documents/analyse}
+
+\chapter{Design}
+\input{text_documents/design}
+
+\chapter{Implementering}
+\input{text_documents/implementering}
+
+\chapter{Test}
+\input{text_documents/test}
+
+\chapter{Konklution}
+\input{text_documents/konklusion}
+
+
+
+
+More plain text.\cite{pear}	%%citering
+\bibliography{51_del3_bib}%% her indsættes referencerne
+\input{text_documents/appendix.tex}
+\end{document}

@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Sat Nov 16 11:14:44 CET 2013
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=51_del3.tex
+outputFile=51_del3.pdf
+langSpell=en
+markDer=true
+srcDir=
