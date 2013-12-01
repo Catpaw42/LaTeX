@@ -52,10 +52,9 @@ implementerer.
 \subsection*{Fleet}
 Fleet et felt og er en subklasse af Ownable, der er karakteriseret ved, at man
 opkræver mere i leje pr gang nogen lander på det, jo flere Fleets, man ejer.
-Nøjagtigt ligesom vi kender færgerne fra matador. Formlen går $(2^(antal af
-fleets)) \cdot 250$. Der ved opkræver man 500 pr gang, hvis man ejer 1 færge;
-1000, hvis man ejer 2; 2000, hvis man ejer 3; og 4000, hvis man ejer alle fire
-færger.\\
+Nøjagtigt ligesom vi kender færgerne fra matador. Formlen går $2^{(fleets)}
+\cdot 250$. Der ved opkræver man 500 pr gang, hvis man ejer 1 færge; 1000, hvis
+man ejer 2; 2000, hvis man ejer 3; og 4000, hvis man ejer alle fire færger.\\
 \indent Vores feltklasser holder som sagt en smule kontrol, da metoden
 landOnField() har en use-relation til GUI’en.\\
 \indent Constructoren til Fleet holder en String title, int price og int

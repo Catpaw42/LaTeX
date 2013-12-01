@@ -1,16 +1,15 @@
-\section*{BrugerTest}
-\addcontentsline{toc}{subsection}{BrugerTest}
+\section*{Brugertest}
+\addcontentsline{toc}{subsection}{Brugertest}
 Vi har kørt nogle bruger tests, for at se om spillet opfører sig som forventet.
 Vi har forsøgt at finde de fejl som gør at spillet af en eller anden grund giver
 et forkert output, så som at spiller ikke går fallit når han skal, men får lov
 at spille videre. Under \textbf{Bilag} kan man se screenshots fra en
 brugertest.\\
 \indent Under gennemførelsen af en brugertest, så det ud som at en vinder ikke
-ikke blev præsenteret for spillerne. For at checke om controlleren kørte loopet
-som finder vinderen, addede vi nogle linjer som blev printet hvis dele af loopen
+blev præsenteret for spillerne. For at checke om controlleren kørte loopet som
+finder vinderen, addede vi nogle linjer som blev printet hvis dele af loopen
 blev kørt. Da vi så kørte den sidste brugertest fandt vi ud af at vinderen altid
-spiller 1 selv om denne spiller var gået fallit
-\textbf{\hyperref[bilag9]{Bilag9}}.
+spiller 1 selv om denne spiller var gået fallit \textbf{\hyperref[bilag9]{Bilag9}}.
 Fejlen var at da vi havde tilføjet den linje som blev printet, så havde vi glemt at omslutte if
 statement med “\{“ således at alle spillere for den sags skyld kunne være
 vindere. Ellers har vi kørt en fuldkommen brugertest hvor vi kommer igennem alle
@@ -25,9 +24,9 @@ navnet som bliver præsenteret som ejer af feltet er det samme. Det er den gule 
 \indent Når man lander på det ene af tax felterne skal man have 2 muligheder for
 at betale (enten 10\% eller 4000kr) \textbf{\hyperref[bilag7]{Bilag7}}. Mens det
 andet tax felt kun skal kræve et bestemt beløb
-\textbf{\hyperref[bilag3]{Bilag3}}. Disse felter får man ikke mulighed for at
+\textbf{\hyperref[bilag4]{Bilag4}}. Disse felter får man ikke mulighed for at
 købe, ligesom refugee heller ikke kan købes, men her får man penge
-\textbf{\hyperref[bilag4]{Bilag4}}.\\
+\textbf{\hyperref[bilag3]{Bilag3}}.\\
 \indent Et andet scenarie er hvis du lander på dit eget felt, så skal der ikke
 ske spilleren noget. Spilleren skal kun få at vide at han er landet på sit eget
 felt \textbf{\hyperref[bilag5]{Bilag5}}, her kan nævnes at vi har gjort således
@@ -36,7 +35,7 @@ aktuelt når en spiller går fallit, så bliver den spiller fjernet som ejer af 
 felter han havde og andre spillere får mulighed for at købe det
 \textbf{\hyperref[bilag6]{Bilag6}}.\\
 \indent Vi skulle også håndtere at en spiller ikke kan købe et felt for så at gå
-fallit fordi han ikke har penge nok, og dette håndtere spillet
+fallit fordi han ikke har penge nok, og dette håndterer spillet
 \textbf{\hyperref[bilag8]{Bilag8}}.
 Spilleren får at vide at han ikke har penge nok, og spillet kører videre. dog
 kan spilleren godt gå fallit når han lander på tax feltet hvor man vælge mellem
@@ -66,7 +65,7 @@ FURPS+ er en forkortelse for Functionality, Usability, Reliability, Performance,
 Supportability. FURPS+ er en god checkliste for at opnå et så godt program som
 muligt, og ikke glemme nogle vigtige dele.
 \begin{itemize}
-  \item \textbf{functionality:} Vi har lavet et funktionelt spil, som opfylder
+  \item \textbf{Functionality:} Vi har lavet et funktionelt spil, som opfylder
   alle kode mæssige krav, som for eksempel at bruge arv når vi programmerede felt
   klasserne og metoden landOnField i klassen Field.
   \item \textbf{Usability:} Spillet er brugervenligt, og der behøves ikke at

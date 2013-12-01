@@ -2,6 +2,7 @@
 
 %%preamble
 \usepackage[utf8]{inputenc}			%%utf 8, danske bogstaver
+\usepackage[margin=1.25in]{geometry}
 \usepackage{fancyhdr}				%%headder package
 \usepackage[titletoc]{appendix}		%%apendix package
 \usepackage{lastpage}				%%last page refference, til antal sider
@@ -11,10 +12,8 @@
 \graphicspath{ {./images/}{./images/bilag/} }	%%path til billeder
 \pagestyle{fancy}
 \bibliographystyle{plain}			%%style på refferencer
-\renewcommand{\partname}{}		%%sleter 'Chapter' før hver sektion (\chapter)
-\renewcommand{\thepart}{}		%%sletter nummer før hver sektion (\chapter)
 \renewcommand\contentsname{Indholdsfortegnelse}		%%snavnet på table of content
-\renewcommand\refname{Refferencer}	%%snavnet på bibliografien
+\renewcommand\refname{Referencer}	%%snavnet på bibliografien
 \setcounter{tocdepth}{2}			%%bestemer hvor detaljeret table of content er
 
 
@@ -32,11 +31,12 @@
 \pagenumbering{arabic}		%%fixes hyperref pagenumbering error (sets it back to
 							%% numbers)
 \tableofcontents
-\newpage
+
 \section{Timeregnskab}
-\noindent \includegraphics[width=\linewidth]{51_del3_Timeregnskab}
+\makebox[\textwidth]{\includegraphics[width=0.7\paperwidth]{51_del3_Timeregnskab}}
+
 \newpage
-\section{Inledning}
+\section{Indledning}
 \input{text_documents/inledning}
 
 \newpage
@@ -55,13 +55,12 @@
 \section{Test og Kvalitetssikring}
 \input{text_documents/test}
 
-\section{Konklution}
+\section{Konklusion}
 \input{text_documents/konklusion}
 
 \bibliography{51_del3_bib}%% her indsættes referencerne
-\addcontentsline{toc}{section}{Refferencer}
+\addcontentsline{toc}{section}{Referencer}
 
 \newpage
-\section{Bilag}
 \input{text_documents/appendix.tex}
 \end{document}
