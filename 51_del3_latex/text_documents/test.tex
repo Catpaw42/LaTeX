@@ -1,4 +1,113 @@
-\section{Test af Spillet}
-
-
-\section{test af JUnit test}
+\section*{BrugerTest}
+\addcontentsline{toc}{subsection}{BrugerTest}
+Vi har kørt nogle bruger tests, for at se om spillet opfører sig som forventet.
+Vi har forsøgt at finde de fejl som gør at spillet af en eller anden grund giver
+et forkert output, så som at spiller ikke går fallit når han skal, men får lov
+at spille videre. Under \textbf{Bilag} kan man se screenshots fra en
+brugertest.\\
+\indent Under gennemførelsen af en brugertest, så det ud som at en vinder ikke
+ikke blev præsenteret for spillerne. For at checke om controlleren kørte loopet
+som finder vinderen, addede vi nogle linjer som blev printet hvis dele af loopen
+blev kørt. Da vi så kørte den sidste brugertest fandt vi ud af at vinderen altid
+spiller 1 selv om denne spiller var gået fallit
+\textbf{\hyperref[bilag9]{Bilag9}}.
+Fejlen var at da vi havde tilføjet den linje som blev printet, så havde vi glemt at omslutte if
+statement med “\{“ således at alle spillere for den sags skyld kunne være
+vindere. Ellers har vi kørt en fuldkommen brugertest hvor vi kommer igennem alle
+scenarier vi kunne komme i tanker om. Bilag 1-9 er de scenarier vi forventer når
+vi lander på et felt. Hvis man lander på et felt som ikke har en ejer, kan man
+vælge at købe det, eller lade være \textbf{\hyperref[bilag1]{Bilag1}}.\\
+\indent Hvis en spiller lander på et felt som er ejet af en anden, så får man
+ikke mulighed for at købe det, men skal betale til ejeren
+\textbf{\hyperref[bilag2]{Bilag2}}. Man kan også se at navnet på feltet og
+navnet som bliver præsenteret som ejer af feltet er det samme. Det er den gule bil
+(Christian) som er endt på Magnus felt og skal betale ham leje.\\
+\indent Når man lander på det ene af tax felterne skal man have 2 muligheder for
+at betale (enten 10\% eller 4000kr) \textbf{\hyperref[bilag7]{Bilag7}}. Mens det
+andet tax felt kun skal kræve et bestemt beløb
+\textbf{\hyperref[bilag3]{Bilag3}}. Disse felter får man ikke mulighed for at
+købe, ligesom refugee heller ikke kan købes, men her får man penge
+\textbf{\hyperref[bilag4]{Bilag4}}.\\
+\indent Et andet scenarie er hvis du lander på dit eget felt, så skal der ikke
+ske spilleren noget. Spilleren skal kun få at vide at han er landet på sit eget
+felt \textbf{\hyperref[bilag5]{Bilag5}}, her kan nævnes at vi har gjort således
+at felterne på GUI’en opdateres så man kan se hvem er ejer af feltet. Det er også
+aktuelt når en spiller går fallit, så bliver den spiller fjernet som ejer af de
+felter han havde og andre spillere får mulighed for at købe det
+\textbf{\hyperref[bilag6]{Bilag6}}.\\
+\indent Vi skulle også håndtere at en spiller ikke kan købe et felt for så at gå
+fallit fordi han ikke har penge nok, og dette håndtere spillet
+\textbf{\hyperref[bilag8]{Bilag8}}.
+Spilleren får at vide at han ikke har penge nok, og spillet kører videre. dog
+kan spilleren godt gå fallit når han lander på tax feltet hvor man vælge mellem
+10\% og 4000 kr. Hvis han har råd til det ene, men ikke det andet, kan han
+alligevel gå fallit ved forkert valg.\\
+\indent To fejl som vi fandt ved brugertest, men som ikke er rettet, er hvis man 
+skriver et grotesk langt navn for en spiller. Navnet bliver så langt at når det er
+spillerens tur, dækker navnet “OK” knappen, og spillet kan ikke fortsættes
+\textbf{\hyperref[bilag10]{Bilag10}}. Det skal altså være et virkelig, virkelig
+langt navn. Hvis spillerne beslutter sig for at have samme navn, så bliver bliver to spillere
+oprettet med hver sin konto, men på GUI’en har de samme farve bil
+\textbf{\hyperref[bilag11]{Bilag11}}, altså er der kun en bil på brættet, men
+som alligevel har to destinationer. Man kan derfor kun se bilen og balancen for den
+ene spiller ad gangen.
+\section*{Black Box (Junit)}
+\addcontentsline{toc}{subsection}{Black Box (Junit)}
+Vi har lavet en JUnit test class FieldJUnitTest, der tester LandOnField for alle
+vores forskellige Field-klasser. Den opretter først sin egen test GUI, den skal
+bruges da der er brugerinput i LandOnField, og derefter kører den en @test for
+hver Field-type. Indlejret i disse test er også nogle test på ting fra Ownable,
+såsom at gå fallit og lande på ens eget felt.\\
+\indent Vi har kørt FieldJUnitTest løbene og brugt den til at rette adskillige
+logiske fejl, til et punkt hvor FieldJUnitTest nu kører fejlfrit.
+\section*{FURPS+}
+\addcontentsline{toc}{subsection}{FURPS+}
+FURPS+ er en forkortelse for Functionality, Usability, Reliability, Performance,
+Supportability. FURPS+ er en god checkliste for at opnå et så godt program som
+muligt, og ikke glemme nogle vigtige dele.
+\begin{itemize}
+  \item \textbf{functionality:} Vi har lavet et funktionelt spil, som opfylder
+  alle kode mæssige krav, som for eksempel at bruge arv når vi programmerede felt
+  klasserne og metoden landOnField i klassen Field.
+  \item \textbf{Usability:} Spillet er brugervenligt, og der behøves ikke at
+  læses nogen brugervejledning for at kunne gennemføre spillet. Dog skal man
+  kende noget til matador regler for at forstå spillet, men du gennem spillet
+  skal du kun trykke “OK” eller får du to valgmuligheder, hvor der er beskrevet
+  hvad de betyder.
+  \item \textbf{Reliability:} Gennem bruger tests og en stor J-Unit test, har vi
+  elimineret alle de fejl, som opstår gennem de forventede scenarier. Som et af
+  kravene har vi med J-Unit testet feltet af typen fleet for:
+  \begin{itemize}
+    \item at spiller ikke får fratrukket beløb når han lander på felt som han
+    selv ejer.
+    \item Når en spiller skal betale til en anden spiller, at den rigtige
+    spiller får bestemt beløb og den anden fratrukket samme beløb.
+    \item Når en spiller køber en fleet, bliver prisen af fleet fratrukket
+    spillerens konto, og spiller bliver sat som ejer af feltet.
+    \item Hvis en spiller er ejer af to fleets, så får den spiller som lander på
+    en af hans fleet, fratrukket et beløb som svarer til $250 \cdot 2^(antal af
+    fleets)$. Og ejeren tilføjet samme beløb.
+    \item I tilfælde af at en spiller ikke har nok kapital ved landing på en
+    andens spillers fleet, så bliver spillerens $balance = 0$, og
+    $active = false$ (spilleren bliver inaktiv og er ikke mere del af
+    spillet). Derefter bliver de penge som spilleren havde, overført til ejeren
+    af fleet.
+  \end{itemize}
+  Så vi har et pålideligt spil, som ikke lukker ned uforventet.
+  \item \textbf{Performance:} Dette har ikke været relevant faktor i vores spil.
+  Spillet bruger så få ressourcer at vi har ikke haft brug for kørtids-analyser
+  og optimering, spillet optager heller ikke mærkbar disk-space.
+  \item \textbf{Supportability:} Vi har gjort en hel del ud af at fremtidssikre
+  koden, så vi kan genbruge så meget som muligt af koden senere. For eksempel
+  har vi undgået “hard coding”, og al tekst i spillet bliver gennem identifiers
+  oversat, ved hjælp af decorator og properties filer, til meningsfyldt tekst.
+  Properties filerne indeholder al tekst, og det gør det nemt at have overblik
+  og ændre på teksten. Vi stødte dog på et problem, som vi løste med gøre
+  felterne til subcontrollere, det gør koden lidt sværere at vedligeholde, da
+  små ændringer i Decorator kan gøre at vi må gennemgå gamecontroller samt alle
+  subcontrollerne for fejl.
+  \item \textbf{+ (Plusset):} Spillet kræver at computeren har og kan køre en
+  opdateret version af java og at mus og tastatur er tilkoblet. Spillet har
+  ingen lyd, så det er ikke en nødvendighed. Ellers er der ikke nogen
+  nævneværdige krav som spillet har til computeren.
+\end{itemize}

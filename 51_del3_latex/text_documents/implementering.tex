@@ -1,12 +1,141 @@
-\section{Klasser}
-\subsection{Main}
-\subsection{Player}
-\subsection{Account}
-\subsection{Decorator}
-\subsection{DiceCup}
-\subsection{Die}
-\subsection{GameController}
-\subsection{Board}
-\subsection{Field}
-\subsection{Ownable}
-\subsection{Tax}
+Komplekse udsnit af kildekode. Implementering af arv. Kode evt. i bilag
+Vores implementering afspejler vores klassediagram.
+\section*{Klasser}
+\addcontentsline{toc}{subsection}{Klasser}
+
+\subsection*{GameController}
+Er en facadecontroller - delegerer så meget ansvar som muligt videre (jvf.
+GRASP). Holder således kun de nødvendige instances af koblede klasser. Som nævnt
+gør vi en undtagelse og lader Gamecontrolleren holde en int, der angiver hvor
+mange spillere, der er tilbage i spillet. Dette er gjort for at undgå ‘tung’
+kode, hvor man er nødt til at iterere over spillerne for at finde ud af hvor
+mange der er tilbage.
+\subsection*{Decorator}
+Decorator er designet efter decorator-patternet, dens primære funktion er at
+dekorere output til GUI’en. Ligesom GUI’en er Decorator en static klasse, så vi
+kan tilgå den alle steder fra, dette er et bevidst designvalg da vi har brudt
+med Border - Controller - Entity på dette punkt og udskriver text fra vores
+Field klasser.\\
+\indent Decorator indeholder jævnføre design-patternet kopier af GUI’s metoder,
+disse er designet via. varargs, så tekststrenge kan deles op og oversættes
+individuelt før de bliver sat sammen og passet til de relevante GUI metoder. Til
+at oversætte tekst bruger vi en java.util.Properties klasse, med tilhørende
+.properties filer for hvert sprog i spillet, der er blevet extended for at give
+os en specifik handling af den særlige case hvor properties returnere null (den
+ønskede key findes ikke).
+\subsection*{Board}
+Board er en simpel klasse der indeholder vores fields i et array, dens
+constructor tager en DiceCup reference, som den passer videre til LaborCamp, og
+opretter derefter alle vores fields. Til sidst bruger den hjælper klassen
+Shuffler, til at blande felterne, så boardet bliver nyt for hvert spil.
+\subsection*{Field}
+Field er roden (super class) for vores felt-klasser. Den er en abstrakt klasse
+og har nogle abstrakte metoder.\\
+\indent Abstrakt betyder for klasser at de ikke kan instantieres, og det betyder
+for metoder at de ikke bliver implementeret i denne klasse (ingen metode body).
+Til gengæld bliver alle subklasser tvunget til at implementere samtlige
+abstrakte metoder.\\
+\indent Field har også en metoden decoratorMessage, denne metode er ligeledes
+implementeret i samtlige subklasser, men er ikke abstrakt da vi skal bruge den
+implementation i Field.\\
+\indent decoratorMessage er designet til at bruge nedarvningen, (gennem kald til
+super.decoratorMessage) til at bestemme hvilken tekst der skal sendes til
+decoratoren. Den er lidt specielt opbygget da den, i stedet for at konkatenere
+strengene og returnere dem som en string, opbygger et String array som
+returneres til Decorator som et vararg.
+\subsection*{Ownable}
+Ownable er en abstract subklasses af field, dens hovedformål er at implementere
+landOnfield for alle klasser der kan ejes. Dette er gjort fordi metoden
+landOnfield er den samme for alle felter der kan købes, den eneste forskel er
+lejen. Lejen beregnes derfor af en abstrakt getRent metode som sub-klasserne
+implementerer.
+\subsection*{Fleet}
+Fleet et felt og er en subklasse af Ownable, der er karakteriseret ved, at man
+opkræver mere i leje pr gang nogen lander på det, jo flere Fleets, man ejer.
+Nøjagtigt ligesom vi kender færgerne fra matador. Formlen går $(2^(antal af
+fleets)) \cdot 250$. Der ved opkræver man 500 pr gang, hvis man ejer 1 færge;
+1000, hvis man ejer 2; 2000, hvis man ejer 3; og 4000, hvis man ejer alle fire
+færger.\\
+\indent Vores feltklasser holder som sagt en smule kontrol, da metoden
+landOnField() har en use-relation til GUI’en.\\
+\indent Constructoren til Fleet holder en String title, int price og int
+baseRent.
+\subsection*{LaborCamp}
+LaborCamp er et felt og er en subklasse af Ownable, der er karakteriseret ved,
+at man betaler 100 gange øjnene af den uheldiges kast. Desuden vil man betale
+dobbelt, hvis en spiller ejer begge LaborCamps. Borset fra prisen, er det
+ækvivalenten til sodavandsfabrikkerne i Matador. Formlen for den opkrævede leje
+er ((antal LaborCamps ejet af opkræveren) * (kastet) * 100).\\
+\indent Constructoren indeholder en String title, int price og int baseRent.
+\subsection*{Territory}
+Territory er et felt og er en subklasse af Ownable. Det er det mest normale af
+de forskellige slags felter, i det der er 11 af dem, og det er meget ligefrem i
+forhold til nogle af de andre felter, i det, at man betaler en fast pris, hver
+gang man lander på dem. De varierer i pris og leje, men er konstante. Selve
+constructeren holder en String title, en int price, og en int rent.
+\subsection*{Tax}
+Tax er en subklasse af Field, og er et felt, der ikke er en Ownable. Det er et
+felt, hvor man betaler skat, hvis man lander der. Skatfelterne fungerer ligesom
+i Matador. Der er to af dem, og på det ene bliver der betalt et fast beløb af
+2000, og på det andet kan man vælge mellem at betale 4000, eller 10\% af sin
+samlede formue. Constructoren holder en String title, int taxAmount og int
+taxRate. Her handler det om at have lidt hovedregning, da det forkerte valg
+kan koste en dyrt.
+\subsection*{Refuge}
+Refuge er et felt og en subklasse af klassen Field. Hvor man modtager 500 eller
+5000 for at lande på feltet. Constructoren indeholder en private attribute (int
+bonus) og en String title.  Derudover har den nedarvet metoden LandOnField(),
+som fortæller GUI at spilleren har landet på Refuge og fortæller hvor meget
+attributen bonus skal deposit til playerAccount. Derudover har den også en
+String$[]$ decoratorMessage og en toString() metode, som returnerer ($title +
+“bonus:” + bonus$).
+\subsection*{Die}
+Klassen Die har to attributter (faceValue: Int og NUM\_SIDES: Int). Den har et
+objekt der refererer til klassen Random, som bruges til at generere en
+pseudotilfældig integer med variablen NUM\_SIDES og en integer med variablen
+faceValue, der holder terningens værdi.\\
+\indent Klassen Die er udvalgt fra det forrige terningespil med den mest
+interessante metode roll(), der henter en pseudo tilfældig integer mellem 0 og 5
+fra objektet Random, hvor faceValue sætter denne random til {++1} og derefter
+returnerer faceValue.
+\subsection*{DiceCup}
+Klassen indeholder metoden rollDice og getterne getSum, getDiceFaceValues og
+getTwoOfAKind, hvor der er også er en toString, som dog ikke bliver anvendt i
+spillet. DiceCup constructoren instantierer de to terninger som skal bruges i
+spillet.\\
+\indent Når GameControlleren beder om at få kastet terningerne kører DiceCup
+metoden rollDice, så  summen af de to terninger bliver beregnet. Når summen af
+de netop kastede terninger skal  bruges, bruger GameController getSum, som
+returnere summen. Fordi at GUI’en også skal vise øjnene pa de to terninger,
+indeholder DiceCup ogsa getDiceFaceValues som returnere et array af de to
+terningers øjne, som GameControlleren så kan tilkalde. Derudover har vi også en
+getter til TwoOfAKind (getTwoOfAKind). Denne indeholder ikke selve reglerne til
+spillet, men giver GameControlleren muligheden for at kunne tilkalde og få at
+vide om terningerne har slået to ens, og hvad der er slået to ens af.
+getTwoOfAKind returnerer derfor enten 0, hvis  terningerne ikke er lige ellers
+1 for to 1’ere og 2 for to 2’ere osv.\\
+\indent String toString kan blive brugt hvis man vil vide terningernes værdier.
+Den kan være nyttig hvis man ikke kører spillet igennem en GUI, så bliver en
+String returneret med forklaring på hvilke værdier terningerne har.
+\subsection*{Player}
+Player har til formål at opbevare data for den enkelte spiller. Den indeholder
+variable for navn og placering på brættet, en account til at styre spillerens
+balance, en liste med alle felter som spilleren ejer og en bools variabel der
+styrer om man stadig er med i spillet. Herudover har player alle nødvendige
+get/set metoder og en toString.\\
+\indent Player har også en goBroke metode, der er bruges til at rydde op efter
+en spiller der er gået falit. goBroke sætter spillerens formue til 0, fjerner
+ham som owner af alle fields, og sætter den boolske “active” variabel til false.
+\subsection*{Account}
+Klassen Account har atributten int, der modsvarer pengebeholdningen. Den har
+derudover en constructor, der opretter en account med et beløb og en default
+constructor, som opretter en account med standardbeløbet 30.000.\\
+\indent Account var i den tidligere rapport specificeret til at den ikke måtte
+få en negativ score. Dette er fortsat, men nu er spilleren bare identificeret
+som bankerot. Derfor er der implementeret tjek for negative beløb i metoderne.
+Disse tjek er behandlet med exceptions. Derudover har klassen Account en
+standard getScore og en setScore, der indeholder et tjek for om metoden forsøger
+at kalde med en negativ int.\\
+\indent Metoden deposit tjekker for om den modtager en negativ int og for om
+score vil gå over maksimumværdien for int. Metoden withdraw kontrollerer for en
+negativ int og for om score vil gå under 0. toString er autogenereret af eclipse.

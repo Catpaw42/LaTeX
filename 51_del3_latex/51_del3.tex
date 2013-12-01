@@ -1,24 +1,29 @@
-%%This is a very basic article template.
-%%There is just one section and two subsections.
-\documentclass[11pt,a4paper]{report}  	%% hvad for en type dokument er det?
+\documentclass[11pt,a4paper]{article}  	%% hvad for en type dokument er det?
 
 %%preamble
-\usepackage[utf8]{inputenc}
-\usepackage{fancyhdr}
-\usepackage[titletoc]{appendix}
-\usepackage{lastpage}
-\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}			%%utf 8, danske bogstaver
+\usepackage{fancyhdr}				%%headder package
+\usepackage[titletoc]{appendix}		%%apendix package
+\usepackage{lastpage}				%%last page refference, til antal sider
+\usepackage[hidelinks]{hyperref}	%%til at bruge refferencer
+\usepackage{graphicx}				%%til at inkludere billeder
+\usepackage{placeins}
+\graphicspath{ {./images/}{./images/bilag/} }	%%path til billeder
 \pagestyle{fancy}
-\bibliographystyle{plain}	%%style på refferencer
-\renewcommand{\chaptername}{}
-\renewcommand{\thechapter}{}
-\setcounter{tocdepth}{1}
+\bibliographystyle{plain}			%%style på refferencer
+\renewcommand{\partname}{}		%%sleter 'Chapter' før hver sektion (\chapter)
+\renewcommand{\thepart}{}		%%sletter nummer før hver sektion (\chapter)
+\renewcommand\contentsname{Indholdsfortegnelse}		%%snavnet på table of content
+\renewcommand\refname{Refferencer}	%%snavnet på bibliografien
+\setcounter{tocdepth}{2}			%%bestemer hvor detaljeret table of content er
+
 
 %%end preamble
 %%--------------------------------------------------------------------------------
 \begin{document}			%%begynd dokumentet
 %%--------------------------------------------------------------------------------
-\nocite{*}					%%erstatter citeringer i texten med reference tal	
+%\nocite{*}					%%erstatter citeringer i texten med reference tal
+\normalfont
 
 \pagenumbering{Alph}		%%fixes hyperref pagenumbering error (sets it to uppercase
 							%% letters)
@@ -27,31 +32,36 @@
 \pagenumbering{arabic}		%%fixes hyperref pagenumbering error (sets it back to
 							%% numbers)
 \tableofcontents
-
-\chapter{Inledning}
+\newpage
+\section{Timeregnskab}
+\noindent \includegraphics[width=\linewidth]{51_del3_Timeregnskab}
+\newpage
+\section{Inledning}
 \input{text_documents/inledning}
 
-\chapter{Analyse}
+\newpage
+\section{Krav}
 \input{text_documents/analyse}
 
-\chapter{Design}
+\newpage
+\section{Design}
 \input{text_documents/design}
 
-\chapter{Implementering}
+\newpage
+\section{Implementering}
 \input{text_documents/implementering}
 
-\chapter{Test}
+\newpage
+\section{Test og Kvalitetssikring}
 \input{text_documents/test}
 
-\chapter{Konklution}
+\section{Konklution}
 \input{text_documents/konklusion}
 
-
-
-
-More plain text.\cite{pear}	%%citering
-
-test\cite{wikipedia}
 \bibliography{51_del3_bib}%% her indsættes referencerne
+\addcontentsline{toc}{section}{Refferencer}
+
+\newpage
+\section{Bilag}
 \input{text_documents/appendix.tex}
 \end{document}

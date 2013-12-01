@@ -1,0 +1,16 @@
+Vi har alt i alt fremstillet et spil, der funktionelt set lever op til
+specifikationerne - og tilføjer ekstra funktionalitet. Det kan spilles med
+begrænsede forkundskaber, om end et kendskab til reglerne er nødvendigt for at
+få det optimale udbytte. Det er pålideligt, men mangler et tjek for
+brugernavnenes længde - så det er muligt at ødelægge brugeroplevelsen for sig
+selv ved at indtaste grotesk lange brugernavne.\\
+\indent Vi har taget nogle designbeslutninger, der skaber højere kobling og
+bryder med BCE paradigmet. Det giver en overskuelig kode, men skaber det problem at det er
+sværere at vedligeholde, idet ændringer i Decorator kan skabe behov for
+ændringer i flere forskellige klasser.\\
+\indent Idet formålet var at undgå for meget kode i vores GameController, kan
+man forsøge at opnå det samme ved at indføre en dedikeret FieldController, der
+delegeres ansvaret for sub use casen ‘Land on Field’. Vores dobbelte kobling
+mellem Player og felterne, kan evt. løses ved at indføre et
+‘tinglysningsregister’ - en (singleton) klasse, der kun har til opgave at holde
+styr på ejerskabet af fields.
