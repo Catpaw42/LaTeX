@@ -1,0 +1,28 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{pdfpages}
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{s103185} }
+\rhead{ \fancyplain{}{Magnus Brandt Sløgedal} }
+\chead{ \fancyplain{}{HjemmeOpg 1} }
+\cfoot{ \fancyplain{}{\thepage / \pageref{LastPage}} }
+\usepackage{amsmath}
+
+\begin{document}
+\title{HjemmeOpgave 1}
+\author{Magnus Brandt Sløgedal s103185}
+\date{\today}
+\maketitle
+\section*{Opgave 1}
+\input{opgave1}
+\newpage
+\section*{Opgave 2}
+\input{opgave2}
+\section*{Opgave 3}
+\input{opgave3}
+\includepdf[pages = {-}]{Maple_for_HjemmeOpg1.pdf}
+\end{document}

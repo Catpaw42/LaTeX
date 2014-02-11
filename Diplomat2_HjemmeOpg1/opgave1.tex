@@ -1,0 +1,106 @@
+For ethvert reelt tal $a$ er givet ligningssystemet:
+\begin{equation*}
+\begin{split}
+x_1 + (a + 1)x_2 + 2x_3 + 2x_4 		&= a - 1\\
+2x_1 + (2*a + 3)x_2 + 5x_3 + 9x_4 	&= a - 6\\
+-x_1 + 5x_2 - x_3 + 3x_4 			&= 7\\
+3x_1 - 2x_2 + 2x_3 - 14x_4 			&= a + 11
+\end{split}
+\end{equation*}
+Jeg starter med at indsætte det sidste tal fra mit studienummer (5) istedet for
+$a$, og trække sammen hvor jeg kan.
+\begin{equation*}
+\begin{split}
+x_1 + 6x_2 + 2x_3 + 2x_4 	&= 4\\
+2x_1 + 13x_2 + 5x_3 + 9x_4 	&= -1\\
+-x_1 + 5x_2 - x_3 + 3x_4 	&= 7\\
+3x_1 - 2x_2 + 2x_3 - 14x_4 	&= 16
+\end{split}
+\end{equation*}
+Herefter opstiller jeg total Matricen for ligningssystemet:
+\begin{equation*}
+\begin{bmatrix}
+1 & 6 & 2 & 2 & 4\\
+2 & 13 & 5 & 9 & -1\\
+-1 & 5 & -1 & 3 & 7\\
+3 & -2 & 2 & -14 & 16
+\end{bmatrix}
+\end{equation*}
+Denne reducere jeg nu via RowOperationer:\\
+Skaffer første ledende 1-tal:\\
+$
+	R2 = R2 + R1 \cdot -2\\
+	R4 = R4 + R3 \cdot 3\\
+	R3 = R3 + R1 \cdot 1
+$
+\begin{equation*}
+\begin{bmatrix}
+1 & 6 & 2 & 2 & 4\\
+0 & 1 & 1 & 5 & -9\\
+0 & 11 & 1 & 5 & 11\\
+0 & 13 & -1 & -5 & 37
+\end{bmatrix}
+\end{equation*}
+Skaffer andet ledende 1-tal:\\
+$
+	R1 = R1 + R2 \cdot -6\\
+	R3 = R3 + R2 \cdot -11\\
+	R4 = R4 + R2 \cdot -13\\
+$
+\begin{equation*}
+\begin{bmatrix}
+1 & 0 & -4 & -28 & 58\\
+0 & 1 & 1 & 5 & -9\\
+0 & 0 & -10 & -50 & 110\\
+0 & 0 & -14 & -70 & 154
+\end{bmatrix}
+\end{equation*}
+Skaffer tredje ledende 1-tal:\\
+$
+	R4 = R4 \cdot 5\\
+	R4 = R4 + R3 \cdot -7\\
+	R3 = R3 \cdot -\frac{1}{10}\\
+	R1 = R1 + R3 \cdot 4\\
+	R2 = R2 + R3 \cdot -1\\
+$
+\begin{equation*}
+\begin{bmatrix}
+1 & 0 & 0 & -8 & 14\\
+0 & 1 & 0 & 0 & 2\\
+0 & 0 & 1 & 5 & -11\\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+\end{equation*}
+Vi har nu matricen på trappeform.
+Opskriver ligningerne:
+\begin{equation*}
+\begin{split}
+x_1 &= 14 + 8x_4\\
+x_2 &= 2\\
+x_3 &= -11 -5x_4
+\end{split}
+\end{equation*}
+erstatter $x_4 = t_1$ og opskriver den fuldstændige løsning.
+\begin{equation*}
+\left(
+\begin{array}{c}
+x_1\\
+x_2\\
+x_3
+\end{array}
+ \right) = 
+ \left(
+\begin{array}{c}
+14\\
+2\\
+-11
+\end{array}
+ \right) + t_1
+ \left(
+\begin{array}{c}
+8\\
+0\\
+-5
+\end{array}
+ \right)
+\end{equation*}
