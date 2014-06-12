@@ -1,19 +1,25 @@
-%%This is a very basic article template.
-%%There is just one section and two subsections.
-\documentclass{article}
+\documentclass[11pt,a4paper]{article}
 
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{pdfpages}
+\usepackage{datetime}
+\usepackage{amsmath}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{s103185} }
+\rhead{ \fancyplain{}{Magnus Brandt Sløgedal} }
+\chead{ \fancyplain{}{HjemmeOpg 2} }
+\cfoot{ \fancyplain{}{\thepage / \pageref{LastPage}} }
+\ddmmyyyydate
 \begin{document}
-
-
-\section{Title}
-
-\subsection{Subtitle}
-
-Plain text.
-
-\subsection{Another subtitle}
-
-More plain text.
-
-
+\title{HjemmeOpgave 2}
+\author{Magnus Brandt Sløgedal s103185}
+\date{\today}
+\maketitle
+\section*{Opgave 1}
+\input{opgave1}
+%%\includepdf[pages = {-}]{Maple_for_HjemmeOpg1.pdf}
 \end{document}
