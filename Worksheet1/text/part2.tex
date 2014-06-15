@@ -1,33 +1,67 @@
 \section{Exercise 6}
-
-\section{Exercise 7}
+\begin{equation*}
+UD \approx \frac{log_2|K|}{R_L\cdot log_2|P|}
+\end{equation*}
+For a substitution cipher where the plaintext is english we have:\\
+\begin{tabular}{ll}
+$|K|$ &= 26!\\
+$|P|$ &= 26\\
+$R_L$ &= 0.7
+\end{tabular}\\
+Substituting this we get:
+\begin{equation*}
+\begin{split}
+UD &\approx \frac{log_2(26!)}{0.7\cdot log_2(26)}\\
+UD &\approx \frac{88.4}{0.7\cdot 4.7}\\
+UD &\approx \frac{88.4}{3.29}\\
+UD &\approx 27\\
+\end{split}
+\end{equation*}
+This means that for a general substitution cipher in normal english, we need
+atleast 27 characters to have any chance at sucess.
 
 \section{Exercise 8}
-
 \begin{equation*}
 \chi^2=\frac{(o_1-e_1)^2}{e_1} + \frac{(o_2-e_2)^2}{e_2} +
 \ldots + \frac{(o_k-e_k)^2}{e_k}
 \end{equation*}
 \begin{tabular}{ll}
 We tested &	1000 bits.\\
-We got: &	542 zerroes\\
-		&	458 ones.\\
+We got:   &	542 zerroes\\
+		  &	458 ones.\\
 We expect &	50/50
-\end{tabular}
-
-
-
+\end{tabular}\\
+Hypothesis $H_1$ : the numbers are divided evenly with a 5\% significanse.\\
+Alternate: reject $H_1$ if $\chi^2 > 3.841$ (1 deg of freedom)\\
+\begin{equation*}
+\begin{split}
+\chi^2	&=\frac{(542-500)^2}{500} + \frac{(458-500)^2}{500}\\
+\chi^2	&= 7.052
+\end{split}
+\end{equation*}
+As my $\chi^2$ test exceeds the value I have from my$\chi^2$ table\cite{Prob} I
+discard the hypothesis, they are not evenly divided.
 \section{Exercise 9}
 \begin{tabular}{ll}
 We tested &1000 times 2bit-pairs.\\
-We got: &231 times 00\\
-		&271 times 01\\
-		&270 times 10\\
-		&228 times 11.
-\end{tabular}
-
-\section{Exercise 10}
-
+We got:   &231 times 00\\
+		  &271 times 01\\
+		  &270 times 10\\
+		  &228 times 11.\\
+We expect &	25/25/25/25
+\end{tabular}\\
+Hypothesis $H_1$ : the numbers are divided evenly with a 5\% significanse.\\
+Alternate: reject $H_1$ if $\chi^2 > 7.815$ (3 deg of freedom)\\
+\begin{equation*}
+\begin{split}
+\chi^2	&=\frac{(231-250)^2}{250} + \frac{(271-250)^2}{250} +
+\frac{(270-250)^2}{250} + \frac{(228-250)^2}{250}\\
+\chi^2	&= 6.744
+\end{split}
+\end{equation*}
+As my $\chi^2$ test does not exceed the value I have from my$\chi^2$
+table\cite{Prob} I can say that the values are evenly distributed with a 5\%
+margin.
 
 \section{Exercise 11}
 given the key:
@@ -40,4 +74,42 @@ given the key:
 	  c & 14 & 6 & 9 & 15 & 11 & 2 & 5 & 7\\
 	\end{tabular}
 \end{center}
-encode the 16-number sequence $(3,3,3\dots,3)$
+To encode the 16-number sequence $(3,3,3\dots,3)$ we do:
+\begin{lstlisting}
+    public static void main(String[] args)
+	{
+		int[] key = {13,4,3,12,1,0,8,10,14,6,9,15,11,2,5,7};
+		String[] key2 ={"1101", "0100", "0011", "1100", "0001", "0000", "1000", "1010", "1110", "0110", "1001", "1111", "1011", "0010", "0101", "0111"};
+		String plaintext = "0011";
+		
+		String init = "0000";
+		String plain = "0011";
+		for (int i = 0; i < 16; i++)
+		{
+			plain = XOR(plain, init);
+			System.out.print(plain + " ");
+			plain = key2[Integer.parseInt(plain, 2)];
+			System.out.println(plain);
+		}
+	}
+\end{lstlisting}
+and get:\\
+\begin{tabular}{cc}
+XOR & encrypt\\
+0011 &1100\\
+1100 &1011\\
+1011 &1111\\
+1111 &0111\\
+0111 &1010\\
+1010 &1001\\
+1001 &0110\\
+0110 &1000\\
+1000 &1110\\
+1110 &0101\\
+0101 &0000\\
+0000 &1101\\
+1101 &0010\\
+0010 &0011\\
+0011& 1100\\
+1100 &1011
+\end{tabular}
