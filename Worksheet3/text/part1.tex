@@ -1,0 +1,45 @@
+\section*{Exercise 18}
+\addcontentsline{toc}{section}{Exercise 18}
+To calculate the entropy of this 40bit key, we first calculate the entropy of a
+single bit from this RNG:
+\begin{equation*}
+\begin{split}
+H(P) &= \displaystyle\sum_{i=1}^{n} p_i \cdot log_2\left(\frac{1}{p_i}\right)\\
+H(P) &= p_1 \cdot log_2\left(\frac{1}{p_1}\right) + p_2 \cdot
+		log_2\left(\frac{1}{p_2}\right)\\
+H(P) &= 0.45 \cdot log_2 \left(\frac{1}{0.45}\right) + 0.55 \cdot
+		log_2\left(\frac{1}{0.55}\right)\\
+H(P) &= 0.45 \cdot 1.152 + 0.55 \cdot 0.862\\
+H(P) &= 0.9925
+\end{split}
+\end{equation*}
+As every bit here has the same entropy, the sum of all 40 concatenated bits are:
+\begin{equation*}
+H(40P) = 0.9925 * 40 =  39.7
+\end{equation*}
+\section*{Exercise 19}
+\addcontentsline{toc}{section}{Exercise 19}
+Calculating the entropy of a single enlish letter using the frequencies on
+slide 13 is a bit to work-intensive when done manually, so I wrote a short
+program using the equation:
+\begin{equation*}
+\begin{split}
+H(P) &= \displaystyle\sum_{i=1}^{n} p_i \cdot log_2\left(\frac{1}{p_i}\right)\\
+\end{split}
+\end{equation*}
+It comes out like this:
+\begin{lstlisting}
+public static void main(String[] args)
+	{
+		double[] fr ={0.082, 0.015, 0.028, 0.034, 0.127, 0.022, 0.020, 0.061, 0.070, 0.002, 0.008, 0.040, 0.024, 0.067, 0.075, 0.019, 0.001, 0.060, 0.063, 0.091, 0.028, 0.010, 0.023, 0.001, 0.020, 0.001};
+				
+		double entropy = 0;
+		for (int i = 0; i < charSet.length; i++)
+			entropy += fr[i] * Math.log(1/fr[i])/Math.log(2);
+		
+		System.out.println(entropy);
+	}
+\end{lstlisting}
+
+And the resulting entropy for a single english plaintex letter is:
+$4.150$

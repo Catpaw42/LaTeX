@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Mon Jun 23 09:49:01 CEST 2014
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=main.tex
+outputFile=Worksheet3.pdf
+langSpell=en
+markDer=true
+srcDir=
