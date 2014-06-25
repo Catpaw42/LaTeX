@@ -1,0 +1,52 @@
+\documentclass[11pt,a4paper]{article}
+
+%%preamble
+\usepackage{listings}
+\usepackage[utf8]{inputenc}			%%utf 8, danske bogstaver
+\usepackage[margin=1.25in]{geometry}
+\usepackage{fancyhdr}				%%headder package
+\usepackage{lastpage}				%%last page refference, til antal sider
+\usepackage[hidelinks]{hyperref}	%%til at bruge refferencer
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage[titletoc]{appendix}
+\usepackage{graphicx}				%%til at inkludere billeder
+\usepackage{placeins}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 							% Define formatting for code-text
+  frame=none, 						% single / tb(line aboe and below) / none
+  language=Java,					%language
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,			% _ for space in string?
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+
+\bibliographystyle{plain}
+
+\title{Project 2}
+\author{Magnus Brandt Sløgedal\\ s103185}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+\input{part1}
+
+\end{document}
