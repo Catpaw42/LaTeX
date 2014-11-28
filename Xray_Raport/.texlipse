@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Thu Nov 27 20:59:33 CET 2014
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=main.tex
+outputFile=02_02344_E14_D3.pdf
+langSpell=en
+markDer=true
+srcDir=

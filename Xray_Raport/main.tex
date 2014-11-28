@@ -1,0 +1,87 @@
+\documentclass[11pt,a4paper]{article}  	%% hvad for en type dokument er det?
+
+%%preamble
+\usepackage[utf8]{inputenc}			%%utf 8, danske bogstaver
+\usepackage[margin=1.25in]{geometry}
+\usepackage{fancyhdr}				%%headder package
+\usepackage[titletoc]{appendix}		%%apendix package
+\usepackage{lastpage}				%%last page refference, til antal sider
+\usepackage[hidelinks]{hyperref}	%%til at bruge refferencer
+\usepackage{graphicx}
+\usepackage{caption}				%%til at inkludere billeder
+\usepackage{subcaption}
+\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{adjustbox}
+\graphicspath{ {./images/}}	%%path til billeder
+\pagestyle{fancy}
+\bibliographystyle{plain}			%%style på refferencer
+\renewcommand\contentsname{Indholdsfortegnelse}		%%snavnet på table of content
+\renewcommand\refname{Referencer}	%%snavnet på bibliografien
+\setcounter{tocdepth}{2}			%%bestemer hvor detaljeret table of content er
+
+\title{Projekt i OOAD og Databaser}
+\author{“Røntgenrekvisition på Hillerød Hospital”}
+
+%%used to rotate things in tables
+\newcolumntype{R}[2]{
+    >{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}
+    l
+    <{\egroup}
+}
+\newcommand*\rot{\multicolumn{1}{R{90}{1em}}}
+%%end preamble
+%%--------------------------------------------------------------------------------
+\begin{document}			%%begynd dokumentet
+%%--------------------------------------------------------------------------------
+%\nocite{*}					%%erstatter citeringer i texten med reference tal
+\normalfont
+
+\pagenumbering{Alph}		%%fixes hyperref pagenumbering error (sets it to uppercase
+							%% letters)
+\input{text_documents/frontpage} %%contains \thispagestyle{empty} so no numbers
+
+\pagenumbering{arabic}		%%fixes hyperref pagenumbering error (sets it back to
+\newpage					%% numbers)
+\renewcommand{\figurename}{Figur}
+\setcounter{figure}{0}
+\tableofcontents
+%\makebox[\textwidth]{\includegraphics[width=0.7\paperwidth]{51_del3_Timeregnskab}}
+\newpage
+\section*{Indledning (Christian)}
+\addcontentsline{toc}{section}{Indledning}
+\input{text_documents/indledning}
+
+\newpage
+\section{Kravspecifikation}
+\input{text_documents/kravspecifikation}
+
+\newpage
+\section{Analyse}
+\input{text_documents/analyse}
+
+\newpage
+\section{Design}
+\input{text_documents/design}
+
+\newpage
+\section{Implementering}
+\input{text_documents/implementering}
+
+\newpage
+\section{Test}
+\input{text_documents/test}
+
+\newpage
+\section{Status og Konklusion}
+\input{text_documents/konklusion}
+
+\newpage
+\addcontentsline{toc}{section}{Referencer}
+\bibliography{bibliografy}%% her indsættes referencerne
+
+\newpage
+\section{Bilag}
+\input{text_documents/appendices.tex}
+\end{document}
